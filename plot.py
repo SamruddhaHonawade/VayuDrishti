@@ -46,8 +46,12 @@ for user in df['user_name'].unique():
     plt.show()
     
 
-app_access_counts = df.groupby('application')['access_count'].sum()
-app_access_counts.plot(kind='pie', autopct=lambda p: '{:,.0f}'.format(p * sum(app_access_counts) / 100))
-plt.title('Application Access Counts')
-plt.ylabel('')
-plt.show()
+for user in df['user_name'].unique():
+    user_data = df[df['user_name'] == user]
+    user_app_access_counts = user_data.groupby('application')['access_count'].sum()
+    
+    if not user_app_access_counts.empty:
+        user_app_access_counts.plot(kind='pie', autopct=lambda p: '{:,.0f}'.format(p * sum(user_app_access_counts) / 100))
+        plt.title(f'Application Access Counts for {user}')
+        plt.ylabel('')  
+        plt.show()
