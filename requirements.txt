@@ -1,0 +1,4 @@
+python-dotenv==0.20.0
+supabase==0.2.2
+pywin32==302
+psutil==5.9.0
